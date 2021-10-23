@@ -1,0 +1,1 @@
+console.log('To jest testowy log do konsoli z pliku script.js')
