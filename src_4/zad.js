@@ -42,12 +42,87 @@ class Produkt{
     }
     
     zmienProdukt(idProduktu,produkt){
-      for(let i in list)
-        {console.log(i)}
+      for(let i =0; i<this.list.length;i++){
+        if(this.list[i].id == idProduktu){
+          this.list[i] = produkt
+          return 
+        }
+      }
+        
     }
     
   }
   
+  class Magazyn extends ListaProduktow{
+    constructor(){
+      super()
+      this.amount = {}
+    }
+    
+    dodajProdukt(produkt,ilosc){
+      this.amount[produkt] = this.amount[produkt] || 0
+      this.amount[produkt] += ilosc
+      super.dodajProdukt(produkt)
+    }
+    
+    zabierzProdukt(idProduktu){
+      Object.entries(super.lista)
+      let out =''
+      this.list.forEach((o)=>{if(o.id == idProduktu){out = o}})
+      if(out ==''){
+        return
+      }
+      else{
+        this.amount[out] = this.amount[out] -1||0 
+      }
+    }
+    
+    ileProduktow(idProduktu){
+      let out =''
+      this.list.forEach((o)=>{if(o.id == idProduktu){out = o}})
+      if(out ==''){
+        return 0
+      }
+      else{
+        return this.amount[out] 
+      }
+    }
+    
+  }
+  
+  class Sklep extends ListaProduktow{
+    constructor(){
+      super()
+      
+    }
+    dodajProdukt(id,nazwa,model,cena,zuzycieEnergii){
+      if(id!=0&&(!id)){
+        let id = Math.max(super.lista.map((o)=>{return o.id})) || 0
+        super.dodajProdukt(id+1,nazwa,model,cena,zuzycieEnergii)
+      }
+    }
+    
+    
+  }
+  
+  class Zamowienie{
+    
+    constructor(idProduktu){
+      this.idProduktu = idProduktu
+      this.lista = new ListaProduktow()
+      this.magazyny = []
+   }
+   dodajMagazyn(){
+     this.magazyny.push(new Magazyn())
+   }
+   zrealizujZamowienie(){
+     this.magazyny.forEach((o)=>{
+       if(o.ileProduktow(this.idProduktu)>0){
+         o.zabierzProdukt(this.idProduktu)
+       }
+     })
+   }
+  }
   let p = []
   let n = 5
   let lista = new ListaProduktow()
@@ -58,4 +133,9 @@ class Produkt{
   
   
   console.log(lista)
-  console.log(lista.wypiszProdukt(2))
+  lista.wypiszProdukt(2)
+  lista.zmienProdukt(2,new Produkt(22))
+  lista.wypiszWszystkieProdukty()
+  
+  
+  
