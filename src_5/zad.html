@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <input type="Button" value="Dodaj" id="button"/>
+  <input type="text" value="" id="textBox" />
+  <p>jakis tekst 1</p>
+  <p>jakis tekst 2</p>
+  <p>jakis tekst 3</p>
+  <p>jakis tekst 4</p>
+  <p>jakis tekst 5</p>
+  <p>jakis tekst 6</p>
+  <p>jakis tekst 7</p>
+  <p>jakis tekst 8</p>
+  
+  <script>
+  let pula = ["red","green","yellow","blue","pink"]
+function choose(choices) {
+  var index = Math.floor(Math.random() * choices.length);
+  return choices[index];
+}
+let pList = document.getElementsByTagName("p")
+for(let i =0;i<pList.length;i++){
+  format(i);  
+}
+
+document.getElementById("button").addEventListener("click",function(){
+  let content = document.getElementById("textBox").value
+//   console.log(content)
+  let element = document.createElement("p")
+  element.innerHTML = content
+  insertAfter(pList[pList.length-1],element)
+  
+  pList = document.getElementsByTagName("p")
+  
+  format(pList.length-1)
+  
+})
+
+function format(i){
+  pList[i].style.color = choose(pula)
+  pList[i].title = pList[i].innerHTML.length
+
+  pList[i].addEventListener("click", function (){
+    for(let y =0;y<pList.length;y++){pList[y].style.border="";pList[y].style.backgroundColor = "";}
+    if(pList[i].nextElementSibling.nextElementSibling){
+      pList[i].nextElementSibling.nextElementSibling.style.border = "thick solid blue"
+    }
+    pList[i].style.border = "thick solid green"
+    if(i>=1&&pList[i].previousElementSibling.previousElementSibling){
+      pList[i].previousElementSibling.previousElementSibling.style.border = "thick solid orange"
+    }
+    if(i%2){
+      pList[i].style.backgroundColor = "#ccc"
+    }
+    else{
+      pList[i].style.backgroundColor = "#555"
+    }
+  })
+  let element = document.createElement("h1")
+  element.innerHTML = "<h1>Paragraf "+(i+1)+"</h1> "
+  
+  pList[i].parentNode.insertBefore(element,pList[i])
+  element.addEventListener("click",function(){
+    if (element.nextElementSibling.style.display==="none")
+      {
+        element.nextElementSibling.style.display="block"
+      }
+    else{
+      element.nextElementSibling.style.display="none"
+    }
+  })
+}
+
+
+function insertAfter(referenceNode, newNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+  </script>
+  
+</body>
+</html>
