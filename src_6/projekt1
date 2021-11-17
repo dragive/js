@@ -1,0 +1,43 @@
+skonczenie zadanek teraz zaczynamy projekt1
+
+temat na cezie
+
+szczegóły projektu:
+	mamy na to 2 tygodnie termin
+za 2 tyg tez go dalej realizujemy
+projektu pokazujemy a nie tylko wrzucamy na cez
+
+prosta plikacja to implementujemy w czystym JS
+koniecznie kolumna z liczba porządkową
+nie jest to powiazanie z danym rekordem tylko podczas wyswietlania ma byc LP
+kazdy produkt definiowany przez nazwe, ilosc, cene
+ILOSC i cena to liczba rzeczywista
+2 miejsca po przecinku
+wazna jest WALIDACJA!!! czyli cena nieprawidlowa, nazwa =="" albo nazwa juz istnieje
+
+przeliczanie ceny koncowej z ceny * ilosc
+
+
+na koncurazem sumuje po obiektach.
+
+
+projekt na 5 pkt
+
+kazda nowa to sumuje sie do tych 5
+
+NA CEZ TO PRZYKLAD I INTERFEJS MOZE BYC INACZEJ
+ma działać a nie niekoniecznie wygladac
+
+per przedmiot mozna dodac przyciski usuwania itp
+
+usuwanie to np ikonka kosza
+po usunieciu trzeba przenumerować w liczbach porzadkowych
+
+moze byc drag and drop zamiana 2 eleemntów
+LP maja sie nie zmieniać wtedy
+
+local storage
+	ponowne otwarcie to pobranie z local storage
+	dodatkowo przy kazdej operacji fajnie bylo by zapisywać do LS
+	i potem rysować 1 funkcją
+
